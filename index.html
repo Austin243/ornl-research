@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Austin Ellis · ORNL research</title>
+<meta name="description" content="Machine-learned interatomic potentials and DFT for the reaction pathways of acetonitrile under pressure, in alcohols and on alkali metals. Research student internship at Oak Ridge National Laboratory.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="assets/data/structures.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html"><b>Austin Ellis</b><span>ORNL research</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="index.html" aria-current="page">Overview</a>
+      <a href="benchmark.html">MLIP benchmark</a>
+      <a href="high-pressure.html">High pressure</a>
+      <a href="alcohols.html">Alcohol reactions</a>
+      <a href="metals.html">Alkali metals</a>
+      <a href="methods.html">Methods</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="kicker">Oak Ridge National Laboratory · Center for Nanophase Materials Sciences</p>
+        <h1>Reaction pathways of acetonitrile under pressure, in alcohols and on alkali metals</h1>
+        <p class="lede">I am a research student intern at ORNL from May 2026 through July 2027. Our project asks how pressure, heat, plasma and the chemical environment reshape the transition states and reaction pathways of molecular systems. Acetonitrile is the first test system, because it forms chains, rings and polymers under very different conditions while remaining small enough to simulate in detail. We find its reaction steps in molecular dynamics with pretrained machine-learned interatomic potentials (MLIPs), check their barriers with density functional theory (DFT), and compare the predicted products with experiment.</p>
+        <div class="links">
+          <a class="btn primary" href="#research">Research areas</a>
+          <a class="btn" href="#ldrd">The LDRD project</a>
+        </div>
+      </div>
+      <figure class="hero-mol">
+        <div class="mol" data-mol="hero"><img class="fallback" src="assets/img/ap-na.webp" alt="4-Amino-2,6-dimethylpyrimidine on Na(100)"></div>
+        <figcaption>4-Amino-2,6-dimethylpyrimidine on Na(100), the product seen in experiment. Drag to rotate.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block reveal" id="ldrd">
+    <div class="panel">
+      <p class="eyebrow">The LDRD project</p>
+      <h2>Decoding the Signatures and Pathways to a Transition State</h2>
+      <div class="two-col mt-m">
+        <div class="prose">
+          <p>This work is part of an ORNL Laboratory Directed Research and Development project led by Ilia N. Ivanov at the Center for Nanophase Materials Sciences, within the NEAT initiative on non-equilibrium and emergent transients in advanced and soft materials.</p>
+          <p>The project addresses a general question about chemical reactions. Transition-state theory describes the barrier that thermal energy must overcome, but pressure, plasma, ultrasound, light and mechanical force change the energy landscape in different ways and may open pathways that heating alone cannot reach. These transition states are short-lived and the reactions are often irreversible, so the mechanisms of such non-thermal transformations of small molecules remain poorly understood.</p>
+          <p>Acetonitrile (CH<sub>3</sub>CN) is the first test system. Under high pressure it converts at room temperature into oligomers, polymers and eventually carbon-rich solids, and it is small enough for detailed simulation. Acrylonitrile shares its nitrile group, so comparing the two separates the roles of double and triple bonds. The project combines high-pressure experiments, neutron and X-ray scattering, and Raman and infrared spectroscopy with molecular dynamics and DFT to identify the transition states along this sequence. It then asks whether milder stimuli can reach the same pathways, with the longer-term aim of selecting reaction pathways in other molecular systems and scaling up the synthesis of new materials.</p>
+        </div>
+        <div>
+          <ol class="aims">
+            <li><b>High-pressure experiments</b>Pathways under pressure and temperature are mapped with Raman, infrared, neutron and X-ray probes.</li>
+            <li class="mine"><b>Reactive dynamics</b>Molecular dynamics samples the reaction networks and the rare events within them.</li>
+            <li class="mine"><b>Transition states</b>DFT locates and refines the transition states, including the effect of pressure.</li>
+            <li><b>Alternative excitation</b>Milder stimuli such as atmospheric plasma are tested for access to the same transition states.</li>
+          </ol>
+          <p class="note mt-m">The filled numbers mark the two simulation aims that this work addresses.</p>
+        </div>
+      </div>
+      <dl class="people mt-l">
+        <div><dt>Project lead</dt><dd>Ilia N. Ivanov</dd></div>
+        <div><dt>Project team</dt><dd>Antonio Moreira dos Santos, Monojoy Goswami, Jingsong Huang, Jacek Jakowski</dd></div>
+        <div><dt>My advisors</dt><dd>Jingsong Huang, Ilia Ivanov, Soumendu Bagchi, Jacek Jakowski</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="block reveal" id="research">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Research</p>
+        <h2>Research areas</h2>
+      </div>
+      <p>Each study follows acetonitrile from the starting molecules to its products in a different environment. The benchmark tests the potentials on which the other studies rely.</p>
+    </div>
+    <div class="cards">
+      <a class="card" href="benchmark.html">
+        <div class="thumb contain"><img src="assets/img/bench-molecule.webp" alt="Transition-state geometry of a DORTS-9K cyclization reaction" loading="lazy"></div>
+        <div class="body"><h3>MLIP benchmark</h3><p>Fifteen pretrained checkpoints are compared with DFT energies, forces and barriers along 9,017 gas-phase reactions.</p><span class="more">Benchmark →</span></div>
+      </a>
+      <a class="card" href="high-pressure.html">
+        <div class="thumb contain"><img src="assets/img/hp-network.webp" alt="Polymerized acetonitrile network at 35 GPa" loading="lazy"></div>
+        <div class="body"><h3>High-pressure polymerization</h3><p>Compressed crystalline acetonitrile polymerizes through hydrogen transfers and C–C additions, which we follow with a fine-tuned potential and DFT.</p><span class="more">High pressure →</span></div>
+      </a>
+      <a class="card" href="alcohols.html">
+        <div class="thumb contain"><img src="assets/img/amk-ts7.webp" alt="Transition state of alcohol elimination closing the triazine ring" loading="lazy"></div>
+        <div class="body"><h3>Alcohol reactions</h3><p>An automated search with AutoMeKin connects acetonitrile in methanol, ethanol or isopropanol to the triazine and the aminopyrimidine.</p><span class="more">Alcohol reactions →</span></div>
+      </a>
+      <a class="card" href="metals.html">
+        <div class="thumb contain"><img src="assets/img/ap-na.webp" alt="4-Amino-2,6-dimethylpyrimidine on Na(100)" loading="lazy"></div>
+        <div class="body"><h3>Alkali-metal surfaces</h3><p>Connected routes on Li, Na and K(100) lead to methane, C–C chains, the triazine and 4-amino-2,6-dimethylpyrimidine.</p><span class="more">Alkali metals →</span></div>
+      </a>
+      <a class="card" href="metals.html#hd">
+        <div class="thumb type"><span>k<sub>H</sub>/k<sub>D</sub></span></div>
+        <div class="body"><h3>Isotope effects</h3><p>Zero-point energies from Hessians give the kinetic isotope effect of each step on all three metals.</p><span class="more">H/D isotope effects →</span></div>
+      </a>
+      <a class="card" href="methods.html">
+        <div class="thumb"><img src="assets/img/reactionflow-overview.webp" alt="ReactionFlow overview with molecular dynamics, event detection and path refinement" loading="lazy"></div>
+        <div class="body"><h3>Methods and tools</h3><p>ReactionFlow detects reactions in molecular dynamics, and DFT, kinetics and computed spectra connect the resulting paths to experiment.</p><span class="more">Methods →</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="block reveal" id="approach">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Approach</p>
+        <h2>How the reaction paths are obtained</h2>
+      </div>
+    </div>
+    <ol class="flow">
+      <li><div class="dot">1</div><h3>Molecular dynamics</h3><p>Pretrained or fine-tuned MLIPs run hot or compressed dynamics on time scales that DFT cannot reach.</p></li>
+      <li><div class="dot">2</div><h3>Event detection</h3><p>ReactionFlow identifies bond changes as they occur in the trajectory.</p></li>
+      <li><div class="dot">3</div><h3>Path refinement</h3><p>NEB, climbing-image NEB and saddle searches locate each transition state.</p></li>
+      <li><div class="dot">4</div><h3>DFT checks</h3><p>DFT single points along the MLIP paths give the barriers.</p></li>
+      <li><div class="dot">5</div><h3>Comparison with experiment</h3><p>Kinetics, isotope effects and spectra connect the predicted products to measurements.</p></li>
+    </ol>
+    <div class="tags">
+      <span class="tag">NERSC Perlmutter</span><span class="tag">OLCF Frontier</span><span class="tag">UMA (fairchem)</span><span class="tag">VASP</span><span class="tag">EON</span><span class="tag">ASE</span><span class="tag">AutoMeKin</span><span class="tag">VESTA</span>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="bar">
+    <p class="footer-note">This site is an experimental living project, written in the spirit of a living manuscript. It presents ongoing work and manuscripts in preparation and is updated periodically, so sections will be added and revised as the research develops. Building and maintaining a coded archive of this kind once took considerable effort, but recent AI tools have reduced that effort substantially. Results can therefore be shared with the team, and possibly with other interested groups, in a clean and interactive form while the research is still under way.</p>
+    <div><b>Austin Ellis</b> · Research student intern, Center for Nanophase Materials Sciences, Oak Ridge National Laboratory</div>
+    <div><a href="https://github.com/Austin243">GitHub</a></div>
+  </div>
+</footer>
+</body>
+</html>

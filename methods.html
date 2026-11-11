@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methods and tools · Austin Ellis · ORNL research</title>
+<meta name="description" content="ReactionFlow for reaction discovery in MLIP molecular dynamics, DFT checks of MLIP paths, kinetics, and computed spectra for comparison with Raman, IR and neutron experiments.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="assets/js/site.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html"><b>Austin Ellis</b><span>ORNL research</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="index.html">Overview</a>
+      <a href="benchmark.html">MLIP benchmark</a>
+      <a href="high-pressure.html">High pressure</a>
+      <a href="alcohols.html">Alcohol reactions</a>
+      <a href="metals.html">Alkali metals</a>
+      <a href="methods.html" aria-current="page">Methods</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <section class="hero compact">
+    <p class="kicker">Methods and tools</p>
+    <h1>Finding and checking reaction paths</h1>
+    <p class="lede">The same workflow underlies every study. Machine-learned potentials allow reactions to occur in molecular dynamics, automated refinement turns each event into a transition state, and DFT checks the barriers before they enter kinetic models or comparisons with experiment.</p>
+  </section>
+
+  <section class="block reveal" id="reactionflow">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Software</p>
+        <h2>ReactionFlow</h2>
+      </div>
+      <div class="links" style="margin:0"><a class="btn primary" href="https://github.com/Austin243/ReactionFlow">ReactionFlow on GitHub</a></div>
+    </div>
+    <figure class="figure flush"><img class="zoomable" src="assets/img/reactionflow-overview.webp" alt="ReactionFlow overview with molecular dynamics, bond-change detection and path refinement, and rare events with EON" loading="lazy"></figure>
+    <div class="two-col mt-l">
+      <div class="prose">
+        <p>ReactionFlow is a Python package I developed to find reactions in atomistic trajectories. It runs MLIP molecular dynamics in the NVT or NPT ensemble and monitors the bond network as the trajectory proceeds. When a bond change persists, ReactionFlow saves an exact checkpoint, refines the path with NEB or climbing-image NEB, using a variable cell at pressure, checks the saddle, and resumes the same trajectory. An EON mode follows rare events with adaptive kinetic Monte Carlo.</p>
+      </div>
+      <div class="stepper" data-stepper>
+        <div class="chips" role="tablist" aria-label="ReactionFlow stages">
+          <button class="chip" type="button" data-step="0" aria-pressed="true">1 · Run MD</button>
+          <button class="chip" type="button" data-step="1" aria-pressed="false">2 · Detect</button>
+          <button class="chip" type="button" data-step="2" aria-pressed="false">3 · Refine</button>
+          <button class="chip" type="button" data-step="3" aria-pressed="false">4 · Check</button>
+          <button class="chip" type="button" data-step="4" aria-pressed="false">5 · Resume</button>
+        </div>
+        <div class="step-text" data-text="0">Dynamics run in the NVT or NPT ensemble with any ASE calculator, including ten built-in MLIP families, at the temperature or pressure needed to reach reactions on nanosecond time scales.</div>
+        <div class="step-text" data-text="1" hidden>A bond counts as formed below 1.15 times and as broken above 1.30 times the sum of the covalent radii, and the change must persist for three observations.</div>
+        <div class="step-text" data-text="2" hidden>An exact checkpoint is saved, and the path between the states before and after the event is refined with NEB and climbing-image NEB, using solid-state NEB at pressure.</div>
+        <div class="step-text" data-text="3" hidden>The saddle must have one negative Hessian mode, and small displacements along that mode must relax into the two states it connects. Only then is the barrier recorded.</div>
+        <div class="step-text" data-text="4" hidden>The trajectory restarts exactly where it stopped, so the dynamics continue as if uninterrupted and the next event is handled in the same way.</div>
+      </div>
+    </div>
+    <div class="tags"><span class="tag">BSD-3 license</span><span class="tag">ASE, NumPy and NetworkX core</span><span class="tag">NERSC Perlmutter</span><span class="tag">OLCF Frontier</span><span class="tag">EON adaptive KMC</span></div>
+  </section>
+
+  <section class="block reveal">
+    <div class="grid-2">
+      <div class="panel">
+        <p class="eyebrow">Accuracy</p>
+        <h3>DFT single points along MLIP paths</h3>
+        <p class="note mt-s">Barriers are recomputed with DFT in VASP at the MLIP saddle and reactant geometries. On the alkali-metal films, DFT and UMA barriers differ by 1.4–1.9 kcal/mol on average. For the compressed crystal, PBE-D3 points along 24 bands agree with the fine-tuned potential to an RMSE of 0.10 eV.</p>
+      </div>
+      <div class="panel">
+        <p class="eyebrow">In development</p>
+        <h3>Kinetic Monte Carlo</h3>
+        <p class="note mt-s">The checked barriers feed a kinetic Monte Carlo model, still in development, that predicts which products form and in what proportions under the experimental conditions.</p>
+      </div>
+      <div class="panel">
+        <p class="eyebrow">Ongoing</p>
+        <h3>Raman and infrared spectra of candidate products</h3>
+        <p class="note mt-s">Computed Raman and infrared spectra of candidate products, in both their hydrogen and deuterium forms, are compared with measured spectra to help identify the products of these reactions.</p>
+      </div>
+      <div class="panel">
+        <p class="eyebrow">Spallation Neutron Source</p>
+        <h3>Fine-tuning against neutron spectra</h3>
+        <p class="note mt-s">With the Spallation Neutron Source, we generated DFT training data for crystalline acetonitrile in the α and β phases, comprising 160 single points on phonon thermal snapshots from 5 to 300 K. These data will be used to fine-tune an MLIP against VISION inelastic neutron spectra and Raman data, and higher-pressure measurements will follow.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <nav class="next" aria-label="More">
+    <a href="metals.html"><span>Previous</span>← Alkali metals</a>
+    <a class="right" href="index.html"><span>Back to</span>Overview →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <div class="bar">
+    <p class="footer-note">This site is an experimental living project, written in the spirit of a living manuscript. It presents ongoing work and manuscripts in preparation and is updated periodically, so sections will be added and revised as the research develops. Building and maintaining a coded archive of this kind once took considerable effort, but recent AI tools have reduced that effort substantially. Results can therefore be shared with the team, and possibly with other interested groups, in a clean and interactive form while the research is still under way.</p>
+    <div><b>Austin Ellis</b> · Research student intern, Center for Nanophase Materials Sciences, Oak Ridge National Laboratory</div>
+    <div><a href="https://github.com/Austin243">GitHub</a></div>
+  </div>
+</footer>
+</body>
+</html>

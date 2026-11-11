@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>High-pressure polymerization · Austin Ellis · ORNL research</title>
+<meta name="description" content="Polymerization of crystalline acetonitrile at 5–35 GPa, followed with reactive molecular dynamics, a fine-tuned UMA potential, automated path refinement and DFT checks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="assets/data/highpressure.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html"><b>Austin Ellis</b><span>ORNL research</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="index.html">Overview</a>
+      <a href="benchmark.html">MLIP benchmark</a>
+      <a href="high-pressure.html" aria-current="page">High pressure</a>
+      <a href="alcohols.html">Alcohol reactions</a>
+      <a href="metals.html">Alkali metals</a>
+      <a href="methods.html">Methods</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <section class="hero compact">
+    <div class="hero-grid">
+      <div>
+        <p class="kicker">High-pressure polymerization</p>
+        <h1>Polymerization of compressed acetonitrile</h1>
+        <p class="lede">Crystalline acetonitrile polymerizes when it is compressed and heated, yet DFT molecular dynamics covers only picoseconds and does not reach these reactions. We combined reactive molecular dynamics with a fine-tuned UMA potential, automated path refinement and DFT checks to identify the steps that build the polymer and to follow how pressure changes them.</p>
+        <div class="tags"><span class="tag wip">Manuscript in preparation</span></div>
+      </div>
+      <figure class="hero-mol">
+        <img class="zoomable" src="assets/img/hp-network.webp" alt="Polymerized acetonitrile network after 0.84 ns at 35 GPa and 2000 K">
+        <figcaption>The C–N network after 0.84 ns at 35 GPa and 2000 K, with carbon dark and nitrogen blue.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block reveal">
+    <div class="two-col">
+      <div class="prose">
+        <p class="eyebrow">Findings</p>
+        <h2>Hydrogen transfer and chain growth</h2>
+        <p>DFT dynamics at 35 GPa, heated to about 1,100 K over 10.7 ps, forms no bonds, because these reactions require nanoseconds. The reactive potential ANI-1xnr reaches them but makes them too easy, and its rates imply a barrier of about 1.1 eV against 2.9 eV from DFT. We therefore relabeled its frames with PBE-D3 and fine-tuned UMA on them, which reduced the barrier error over 28 checked paths from 0.17 to 0.10 eV and the force error from 0.040 to 0.019 eV/Å.</p>
+      </div>
+      <div class="prose">
+        <p>With the fine-tuned potential, an early hydrogen transfer from a methyl group to nitrogen creates N–H donors. C–C growth through such a donor costs 0.68–0.88 eV, whereas growth that must break a methyl C–H bond costs 3.1–3.4 eV. Pressure lowers both barriers between 5 and 35 GPa but leaves this order unchanged.</p>
+        <p>Forming the first bond in the perfect crystal requires about 3.0–3.4 eV. This value is consistent with the onset temperatures measured in heated diamond-anvil cells, although it cannot explain conversion at room temperature, which may instead begin at defects or at the gasket.</p>
+      </div>
+    </div>
+    <div class="chart mt-l" data-chart="hp-barriers"></div>
+  </section>
+
+  <section class="block reveal">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Polymerization at 35 GPa</p>
+        <h2>From the trajectory to the individual steps</h2>
+      </div>
+      <p>At 2000 K the enthalpy of the cell falls by about 1.5 eV per molecule within the first 0.1 ns as the molecules polymerize. To resolve the individual steps, we assembled nine connected paths from M0 to a pentamer-containing state, independently of this trajectory, and checked every stationary point with a DFT single point.</p>
+    </div>
+    <figure class="figure"><img class="zoomable" src="assets/img/hp-md-35gpa.webp" alt="Enthalpy per molecule during polymerization at 35 GPa and 2000 K" loading="lazy"></figure>
+    <p class="caption"><b>Polymerization at 35 GPa and 2000 K.</b> Enthalpy per molecule along the fine-tuned UMA trajectory, with the final network.</p>
+    <div class="chart mt-l" data-chart="hp-path"></div>
+    <div class="hp-strip">
+      <button type="button" data-hp-open="M1"><img src="assets/img/hp-M1.webp" alt="Dimer state M1" loading="lazy"><b>Dimer</b><span>M1</span></button>
+      <button type="button" data-hp-open="M3"><img src="assets/img/hp-M3.webp" alt="Trimer state M3" loading="lazy"><b>Trimer</b><span>M3</span></button>
+      <button type="button" data-hp-open="M7"><img src="assets/img/hp-M7.webp" alt="Tetramer state M7" loading="lazy"><b>Tetramer</b><span>M7</span></button>
+      <button type="button" data-hp-open="M9"><img src="assets/img/hp-M9.webp" alt="Pentamer state M9" loading="lazy"><b>Pentamer</b><span>M9</span></button>
+    </div>
+    <p class="caption">The reacting molecules of four states along the path, rendered from the path geometries. Clicking a structure, or any point of the chart, opens the whole cell in 3D.</p>
+    <div class="prose mt-m">
+      <p>The first dimer requires 2.66 eV with UMA and 2.67 eV with DFT, and the later additions become easier. The last addition uses an N–H group already present in the oligomer as the hydrogen donor, with a barrier of 0.68 eV (0.66 eV with DFT), and the pentamer-containing cell lies 1.37 eV below M0. The earlier hydrogen transfers therefore prepare a donor that makes the subsequent addition easier.</p>
+    </div>
+  </section>
+
+  <section class="block reveal">
+    <div class="two-col even">
+      <div class="prose">
+        <p class="eyebrow">Method</p>
+        <p>Reactive molecular dynamics of the 288-atom cell ran at 2000–2900 K to reach reactions on nanosecond time scales. ReactionFlow detected each bond change and refined it with variable-cell climbing-image NEB at the pressure of the cell. A barrier was kept only when its saddle had one negative mode and connected the expected states. PBE-D3 single points along 24 bands give a mean error of −0.04 eV and an RMSE of 0.10 eV, with the largest deviations on spin-polarized paths.</p>
+      </div>
+      <dl class="kv">
+        <dt>Cell</dt><dd>β-acetonitrile, 48 molecules (288 atoms), 5–35 GPa</dd>
+        <dt>Potential</dt><dd>UMA-M fine-tuned on 8,041 PBE-D3 frames, with ANI-1xnr for discovery</dd>
+        <dt>Paths</dt><dd>Variable-cell climbing-image NEB with saddle checks</dd>
+        <dt>DFT</dt><dd>PBE-D3 single points along the bands (VASP)</dd>
+        <dt>Experiment</dt><dd>High-pressure Raman and neutron work within the LDRD project</dd>
+      </dl>
+    </div>
+  </section>
+
+  <nav class="next" aria-label="More">
+    <a href="benchmark.html"><span>Previous</span>← MLIP benchmark</a>
+    <a class="right" href="alcohols.html"><span>Next</span>Alcohol reactions →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <div class="bar">
+    <p class="footer-note">This site is an experimental living project, written in the spirit of a living manuscript. It presents ongoing work and manuscripts in preparation and is updated periodically, so sections will be added and revised as the research develops. Building and maintaining a coded archive of this kind once took considerable effort, but recent AI tools have reduced that effort substantially. Results can therefore be shared with the team, and possibly with other interested groups, in a clean and interactive form while the research is still under way.</p>
+    <div><b>Austin Ellis</b> · Research student intern, Center for Nanophase Materials Sciences, Oak Ridge National Laboratory</div>
+    <div><a href="https://github.com/Austin243">GitHub</a></div>
+  </div>
+</footer>
+</body>
+</html>

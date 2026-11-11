@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alcohol reactions · Austin Ellis · ORNL research</title>
+<meta name="description" content="AutoMeKin search of acetonitrile with methanol, ethanol and isopropanol, connecting the route through the triazine to 4-amino-2,6-dimethylpyrimidine.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="assets/data/alcohols.js" defer></script>
+<script src="assets/data/structures.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html"><b>Austin Ellis</b><span>ORNL research</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="index.html">Overview</a>
+      <a href="benchmark.html">MLIP benchmark</a>
+      <a href="high-pressure.html">High pressure</a>
+      <a href="alcohols.html" aria-current="page">Alcohol reactions</a>
+      <a href="metals.html">Alkali metals</a>
+      <a href="methods.html">Methods</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <section class="hero compact">
+    <p class="kicker">Alcohol reactions</p>
+    <h1>Automated reaction search for acetonitrile in alcohols</h1>
+    <p class="lede">In alcohols, acetonitrile can trimerize to 2,4,6-trimethyl-1,3,5-triazine and react further to 4-amino-2,6-dimethylpyrimidine. Unbiased semiempirical dynamics did not reach these products, so we used AutoMeKin to search the reaction network of four acetonitrile and four alcohol molecules and connected the full route step by step for methanol, ethanol and isopropanol.</p>
+    <div class="tags"><span class="tag wip">Exploratory · semiempirical PM7 energies</span><span class="tag">15 steps connected by TS optimization and IRC for each alcohol</span></div>
+  </section>
+
+  <section class="block reveal">
+    <div class="chart" data-chart="alcohols"></div>
+    <p class="caption">Click a peak to load its transition state below, or a plateau for the intermediate. Stages are shaded, and the labelled peak is the hardest step.</p>
+    <div class="mt-m" data-mol="alcohol-ts"></div>
+  </section>
+
+  <section class="block reveal">
+    <div class="two-col">
+      <div class="prose">
+        <p class="eyebrow">The route</p>
+        <h2>From imidates to the triazine and the aminopyrimidine</h2>
+        <p>The route begins when the alcohol adds across the C≡N bond to give an alkyl acetimidate. Imidates then condense to an iminoether dimer and an open linear trimer. Ring closure is nearly barrierless at 2–3 kcal/mol, and loss of the alcohol, at 35–36 kcal/mol, gives the triazine.</p>
+        <p>From the triazine, an imidate adds to the ring, the ring opens, and a hydrogen transfer followed by C–C closure forms the aminopyrimidine while returning acetonitrile and the alcohol. Because the alcohol is regenerated, it acts as a promoter. The hardest step is the hydrogen transfer before C–C closure, at about 61 kcal/mol, and with all molecules separated the reaction of three acetonitrile molecules to the aminopyrimidine releases 40.6 kcal/mol for each of the three alcohols.</p>
+      </div>
+      <div class="callout">These are PM7 energies of gas-phase clusters, stitched step by step without zero-point or solvent corrections. Every step is connected by TS optimization and IRC, but the energies remain provisional until they are refined with DFT. Unbiased PM7 dynamics over about 170,000 frames formed no imidate, and the route was therefore built from directed searches.</div>
+    </div>
+  </section>
+
+  <section class="block reveal">
+    <p class="eyebrow">Transition states</p>
+    <div class="ts-row mt-m">
+      <figure><img class="zoomable" src="assets/img/amk-ts1.webp" alt="Transition state of the first acetimidate formation" loading="lazy"><figcaption><b>Imidate formation, step 1</b>Methanol adds across the C≡N bond.</figcaption></figure>
+      <figure><img class="zoomable" src="assets/img/amk-ts7.webp" alt="Transition state of methanol elimination to the triazine" loading="lazy"><figcaption><b>Triazine formation, step 7</b>Methanol leaves the closed ring.</figcaption></figure>
+      <figure><img class="zoomable" src="assets/img/amk-ts11.webp" alt="Transition state of the hydrogen transfer before C–C closure" loading="lazy"><figcaption><b>Hydrogen transfer, step 11</b>The hardest step, before the pyrimidine ring closes.</figcaption></figure>
+    </div>
+    <p class="caption">Methanol route, rendered from the PM7 transition-state geometries.</p>
+  </section>
+
+  <nav class="next" aria-label="More">
+    <a href="high-pressure.html"><span>Previous</span>← High pressure</a>
+    <a class="right" href="metals.html"><span>Next</span>Alkali metals →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <div class="bar">
+    <p class="footer-note">This site is an experimental living project, written in the spirit of a living manuscript. It presents ongoing work and manuscripts in preparation and is updated periodically, so sections will be added and revised as the research develops. Building and maintaining a coded archive of this kind once took considerable effort, but recent AI tools have reduced that effort substantially. Results can therefore be shared with the team, and possibly with other interested groups, in a clean and interactive form while the research is still under way.</p>
+    <div><b>Austin Ellis</b> · Research student intern, Center for Nanophase Materials Sciences, Oak Ridge National Laboratory</div>
+    <div><a href="https://github.com/Austin243">GitHub</a></div>
+  </div>
+</footer>
+</body>
+</html>

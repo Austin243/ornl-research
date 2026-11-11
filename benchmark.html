@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MLIP benchmark · Austin Ellis · ORNL research</title>
+<meta name="description" content="Fifteen pretrained machine-learned interatomic potentials compared with ωB97M-V/def2-TZVP forces, energies and barriers on the 9,017 reactions of DORTS-9K.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="assets/data/benchmark.js" defer></script>
+<script src="assets/data/structures.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html"><b>Austin Ellis</b><span>ORNL research</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="index.html">Overview</a>
+      <a href="benchmark.html" aria-current="page">MLIP benchmark</a>
+      <a href="high-pressure.html">High pressure</a>
+      <a href="alcohols.html">Alcohol reactions</a>
+      <a href="metals.html">Alkali metals</a>
+      <a href="methods.html">Methods</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <section class="hero compact">
+    <p class="kicker">MLIP benchmark</p>
+    <h1>Pretrained interatomic potentials along reaction paths</h1>
+    <p class="lede">Pretrained MLIPs are increasingly used to explore reactions. An accurate description of the reactant and product, however, does not ensure an accurate barrier, which also depends on the transition state. We therefore compared fifteen checkpoints with DFT forces, energies and barriers along the 9,017 gas-phase organic reactions of DORTS-9K, from the reactant through the transition state to the product.</p>
+    <div class="links">
+      <a class="btn primary" href="https://github.com/Austin243/dorts9k-mlip-benchmark">Code and data on GitHub</a>
+      <a class="btn" href="https://austin243.github.io/dorts9k-mlip-benchmark/">Interactive figures</a>
+      <a class="btn" href="https://doi.org/10.5281/zenodo.17141108">DORTS-9K dataset</a>
+    </div>
+    <div class="tags"><span class="tag wip">Manuscript in preparation · J. Chem. Theory Comput.</span></div>
+  </section>
+
+  <section class="block reveal">
+    <div class="two-col">
+      <div class="prose">
+        <p class="eyebrow">Findings</p>
+        <h2>Errors along the reaction path</h2>
+        <p>Checkpoints trained on molecular data reproduce the reference most closely. UMA-M with its OMol head has a median force error of 0.018 eV/Å over all configurations and a barrier error of 0.77 kcal/mol on the 3,995 CHNO reactions, with 96% of the barriers within 1 kcal/mol. The task head matters more than the size of the model. When UMA-M uses its OMC head instead, its median force error rises from 0.018 to 0.49 eV/Å.</p>
+        <p>The force error grows toward the transition state, where it is two to three times larger than at the reactant and product. The largest barrier errors are also shared among models. All 38 reactions with the largest UMA-M OMol errors are underestimated, by 25–34 kcal/mol, and most are hydrogen transfers involving nitrous acid or reactions from one azide–isocyanate template. Fifteen of the seventeen checkpoints underestimate every one of these barriers, and only the two AIMNet2 checkpoints avoid this failure.</p>
+      </div>
+      <div class="chart" data-chart="bench-barriers"></div>
+    </div>
+  </section>
+
+  <section class="block reveal">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Cost</p>
+        <h2>Accuracy and computational cost</h2>
+      </div>
+      <p>The most accurate checkpoint is also the slowest, at about 28 ms per configuration. UMA-S OMol is four times faster with a median force error of 0.026 eV/Å, and OrbMol-v2 needs about 1 ms per configuration at 0.036 eV/Å.</p>
+    </div>
+    <div class="chart" data-chart="bench-speed"></div>
+  </section>
+
+  <section class="block reveal">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Failure cases</p>
+        <h2>Six reactions with large barrier errors</h2>
+      </div>
+      <p>These CHNO reactions are among those that UMA-M OMol describes worst. The viewer steps from the reactant through the transition state to the product, and the table compares UMA-M OMol with AIMNet2-RXN at the same geometries.</p>
+    </div>
+    <div data-mol="reactions"></div>
+    <p class="caption">Geometries from DORTS-9K, aligned on the transition state. The animation interpolates linearly between the three geometries and serves only as a guide. The static version is Figure 5 of the manuscript (<a href="#" data-open="assets/img/bench-fig5.webp">open</a>).</p>
+  </section>
+
+  <section class="block reveal">
+    <div class="two-col even">
+      <div class="prose">
+        <p class="eyebrow">Method</p>
+        <p>Each reaction contributes five direct anchors, namely the reactant, the product, the GFN2-xTB transition state and two maximum-slope points, together with normal-mode samples around them. Every configuration carries a ωB97M-V/def2-TZVP single point. We evaluated each checkpoint on all configurations and compared forces, per-atom relative energies, barriers by reaction class and by position along the path, and GPU throughput.</p>
+      </div>
+      <dl class="kv">
+        <dt>Families</dt><dd>UMA, MACE-MH-1, MACE-POLAR-1, OrbMol, AIMNet2, SevenNet and NEP89, with ANI-1xnr and AIMNet2-RXN on the CHNO subset</dd>
+        <dt>Reference</dt><dd>ωB97M-V/def2-TZVP single points at fixed geometries</dd>
+        <dt>CHNO subset</dt><dd>3,995 reactions that contain only C, H, N and O</dd>
+        <dt>Scope</dt><dd>Barriers are evaluated at the dataset geometries, without MLIP transition-state searches</dd>
+      </dl>
+    </div>
+  </section>
+
+  <nav class="next" aria-label="More">
+    <a href="index.html"><span>Previous</span>← Overview</a>
+    <a class="right" href="high-pressure.html"><span>Next</span>High pressure →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <div class="bar">
+    <p class="footer-note">This site is an experimental living project, written in the spirit of a living manuscript. It presents ongoing work and manuscripts in preparation and is updated periodically, so sections will be added and revised as the research develops. Building and maintaining a coded archive of this kind once took considerable effort, but recent AI tools have reduced that effort substantially. Results can therefore be shared with the team, and possibly with other interested groups, in a clean and interactive form while the research is still under way.</p>
+    <div><b>Austin Ellis</b> · Research student intern, Center for Nanophase Materials Sciences, Oak Ridge National Laboratory</div>
+    <div><a href="https://github.com/Austin243">GitHub</a></div>
+  </div>
+</footer>
+</body>
+</html>

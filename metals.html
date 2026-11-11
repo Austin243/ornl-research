@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alkali-metal surfaces · Austin Ellis · ORNL research</title>
+<meta name="description" content="Connected reaction routes of acetonitrile films on Li, Na and K(100) to methane, H2, C–C chains, the triazine and 4-amino-2,6-dimethylpyrimidine, with DFT-checked barriers and H/D isotope effects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="assets/data/metals.js" defer></script>
+<script src="assets/data/structures.js" defer></script>
+<script src="assets/data/isotopes.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html"><b>Austin Ellis</b><span>ORNL research</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="index.html">Overview</a>
+      <a href="benchmark.html">MLIP benchmark</a>
+      <a href="high-pressure.html">High pressure</a>
+      <a href="alcohols.html">Alcohol reactions</a>
+      <a href="metals.html" aria-current="page">Alkali metals</a>
+      <a href="methods.html">Methods</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <section class="hero compact">
+    <p class="kicker">Alkali-metal surfaces</p>
+    <h1>Acetonitrile on lithium, sodium and potassium</h1>
+    <p class="lede">Experiments on sodium point to pyrimidine rings as the product, yet acetonitrile on an alkali metal can also cleave, form C–C chains or close other rings. We followed a film of acetonitrile on Li, Na and K(100) along each of these routes, with every state reached from the one before it and every drawn barrier checked with DFT.</p>
+  </section>
+
+  <div data-tabs id="metals-tabs">
+    <div class="tabs" role="tablist" aria-label="Metal">
+      <button role="tab" data-tab="overview" type="button">Overview</button>
+      <button role="tab" data-tab="li" type="button"><span class="swatch li"></span>Lithium</button>
+      <button role="tab" data-tab="na" type="button"><span class="swatch na"></span>Sodium</button>
+      <button role="tab" data-tab="k" type="button"><span class="swatch k"></span>Potassium</button>
+      <button role="tab" data-tab="hd" type="button"><span class="swatch hd"></span>H/D isotope effects</button>
+    </div>
+
+    <!-- overview -->
+    <section class="tabpanel" data-panel="overview" role="tabpanel">
+      <div class="two-col">
+        <div class="prose">
+          <p>Each metal carries two layers of acetonitrile on its (100) surface. Paths and energies come from the UMA potential, and each route is one continuous path in one film, so that every step starts from the product of the step before. For each drawn step, DFT single points at the saddle and its reactant give the barrier, and these barriers differ from UMA by 1.4–1.9 kcal/mol on average.</p>
+        </div>
+        <div class="prose">
+          <p>The hardest step of each route differs considerably among the three metals. Sodium reaches methane, the chain, the triazine and the aminopyrimidine by both routes, and up to the amide intermediate its hardest step on the CH<sub>2</sub>CN route is only 12.3 kcal/mol. The final hydrogen transfer that turns the amide into the aminopyrimidine costs 22.2 kcal/mol and is uphill, so the amide is the resting state. Potassium cleaves the C–CN bond and grows chains most easily, whereas lithium needs the largest steps, 26.6 kcal/mol for the chain and 33.7 kcal/mol for the aminopyrimidine.</p>
+        </div>
+      </div>
+      <div class="chart mt-l" data-chart="metal-overview"></div>
+      <p class="caption">Barriers are DFT single points at the UMA geometries. Hover a dot for the UMA value and the product energy, or click it to open that product in 3D. Each metal's tab draws every route in full.</p>
+      <div class="renders mt-l">
+        <figure><img class="zoomable" src="assets/img/ap-li.webp" alt="4-Amino-2,6-dimethylpyrimidine on Li(100)" loading="lazy"><figcaption><span class="swatch li"></span>Li(100)</figcaption></figure>
+        <figure><img class="zoomable" src="assets/img/ap-na.webp" alt="4-Amino-2,6-dimethylpyrimidine on Na(100)" loading="lazy"><figcaption><span class="swatch na"></span>Na(100)</figcaption></figure>
+        <figure><img class="zoomable" src="assets/img/ap-k.webp" alt="4-Amino-2,6-dimethylpyrimidine on K(100)" loading="lazy"><figcaption><span class="swatch k"></span>K(100)</figcaption></figure>
+      </div>
+      <p class="caption">4-Amino-2,6-dimethylpyrimidine, the product seen in experiment, bound to each surface (VESTA, top metal layer only).</p>
+    </section>
+
+    <!-- lithium -->
+    <section class="tabpanel" data-panel="li" role="tabpanel" hidden>
+      <div class="metal-intro">
+        <div class="prose">
+          <h2>Lithium</h2>
+          <p>The lithium surface rebuilds around each reaction, so states fall far below the start and chains grow steeply downhill. The hardest steps are also the largest of the three metals. The aminopyrimidine forms through the N-linked trimer, whereas the triazine and the CH<sub>2</sub>CN route stop at a step that did not connect cleanly.</p>
+          <p class="note">Every route is drawn below. Hover a step for its DFT and UMA barriers, and click any state or saddle to open it in 3D.</p>
+        </div>
+        <div class="mol-card" data-mol="product" data-metal="li"><div class="mol"><img class="fallback" src="assets/img/ap-li.webp" alt="4-Amino-2,6-dimethylpyrimidine on Li(100)"></div></div>
+      </div>
+      <div class="map-wrap" data-metal-map="li"></div>
+    </section>
+
+    <!-- sodium -->
+    <section class="tabpanel" data-panel="na" role="tabpanel" hidden>
+      <div class="metal-intro">
+        <div class="prose">
+          <h2>Sodium</h2>
+          <p>Sodium is the only one of the three metals studied experimentally so far, and on two layers it reaches methane, the chain, the triazine and the aminopyrimidine. Ten steps lead from the film to the aminopyrimidine through CH<sub>2</sub>CN. The largest of them up to the amide is 12.3 kcal/mol, and the final hydrogen transfer, at 22.2 kcal/mol and uphill, limits the formation of the product itself. The triazine and the C–C chain are also accessible, with largest steps of 11.3 and 13.7 kcal/mol.</p>
+          <p class="note">Every route is drawn below. Hover a step for its DFT and UMA barriers, and click any state or saddle to open it in 3D.</p>
+        </div>
+        <div class="mol-card" data-mol="product" data-metal="na"><div class="mol"><img class="fallback" src="assets/img/ap-na.webp" alt="4-Amino-2,6-dimethylpyrimidine on Na(100)"></div></div>
+      </div>
+      <div class="map-wrap" data-metal-map="na"></div>
+    </section>
+
+    <!-- potassium -->
+    <section class="tabpanel" data-panel="k" role="tabpanel" hidden>
+      <div class="metal-intro">
+        <div class="prose">
+          <h2>Potassium</h2>
+          <p>Potassium has the easiest first steps. C–CN cleavage to methane requires 7.5 kcal/mol, and the C–C chain grows to the 8-mer with no step above 11.6 kcal/mol. The aminopyrimidine forms through CH<sub>2</sub>CN with a largest step of 24.1 kcal/mol, whereas the route through the N-linked trimer stops at its ring-closing step.</p>
+          <p class="note">Every route is drawn below. Hover a step for its DFT and UMA barriers, and click any state or saddle to open it in 3D.</p>
+        </div>
+        <div class="mol-card" data-mol="product" data-metal="k"><div class="mol"><img class="fallback" src="assets/img/ap-k.webp" alt="4-Amino-2,6-dimethylpyrimidine on K(100)"></div></div>
+      </div>
+      <div class="map-wrap" data-metal-map="k"></div>
+    </section>
+
+    <!-- H/D -->
+    <section class="tabpanel" data-panel="hd" role="tabpanel" hidden>
+      <div class="two-col">
+        <div class="prose">
+          <h2>Kinetic isotope effects</h2>
+          <p>Replacing every hydrogen with deuterium changes the rate of a step mainly through the zero-point energy. We computed this effect from UMA Hessians at the saddle and the reactant of each step. Steps that move hydrogen show normal isotope effects, about 4 at room temperature for the last hydrogen transfer to the aminopyrimidine and about 9 for hydrogen moving from carbon to the metal. Bond formation without hydrogen transfer mostly gives small inverse effects.</p>
+        </div>
+        <div class="prose">
+          <p>The hardest steps of most routes move no hydrogen, so the overall rates change little with deuterium, and the energetic spans of the routes give k<sub>H</sub>/k<sub>D</sub> of only 0.5–1.4 at 298 K. The final hydrogen transfer to the aminopyrimidine therefore provides the clearest isotope signature, with k<sub>H</sub>/k<sub>D</sub> of 3.9–4.5 at 298 K and 8–10 at 193 K on all three metals. C–CN cleavage shows a secondary effect of 1.2–1.8 at 298 K. Deuterated molecular dynamics with classical nuclei shows no H/D difference beyond the scatter between replicas, as expected without zero-point energy.</p>
+        </div>
+      </div>
+      <div class="chart mt-l" data-chart="isotopes"></div>
+      <p class="caption">ZPE-only k<sub>H</sub>/k<sub>D</sub> = exp[(ΔE<sup>‡</sup><sub>D</sub> − ΔE<sup>‡</sup><sub>H</sub>)/RT] from UMA Hessians of 85 steps of the one-layer profiles. The lithium step from carbon to the metal starts from a different reactant and is omitted. Click a dot to open its saddle in 3D.</p>
+      <figure class="figure mt-l"><img class="zoomable" src="assets/img/hd-na-profile.webp" alt="Na linear-tetramer profile with zero-point energies for H and D" loading="lazy"></figure>
+      <p class="caption"><b>Sodium, linear-tetramer route with zero-point energy for H and D.</b> (a) Transition states of the main steps. (b) Energies with ZPE for H (light) and D (dark), DFT + ZPE points, and k<sub>H</sub>/k<sub>D</sub> at 298 K under each step.</p>
+    </section>
+  </div>
+
+  <nav class="next" aria-label="More">
+    <a href="alcohols.html"><span>Previous</span>← Alcohol reactions</a>
+    <a class="right" href="methods.html"><span>Next</span>Methods →</a>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <div class="bar">
+    <p class="footer-note">This site is an experimental living project, written in the spirit of a living manuscript. It presents ongoing work and manuscripts in preparation and is updated periodically, so sections will be added and revised as the research develops. Building and maintaining a coded archive of this kind once took considerable effort, but recent AI tools have reduced that effort substantially. Results can therefore be shared with the team, and possibly with other interested groups, in a clean and interactive form while the research is still under way.</p>
+    <div><b>Austin Ellis</b> · Research student intern, Center for Nanophase Materials Sciences, Oak Ridge National Laboratory</div>
+    <div><a href="https://github.com/Austin243">GitHub</a></div>
+  </div>
+</footer>
+</body>
+</html>

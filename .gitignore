@@ -1,0 +1,4 @@
+# Local build scripts: they read project folders by absolute path
+tools/
+.DS_Store
+__pycache__/
