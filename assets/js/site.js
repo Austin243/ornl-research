@@ -1263,59 +1263,6 @@
     });
   }
 
-  /* ---------------- high pressure: barrier against pressure ---------------- */
-  function hpChart(box) {
-    const data = DATA().highpressure && DATA().highpressure.classes;
-    if (!data) return;
-    const accent = cssVar('--accent');
-    const COL = { GROW: accent, GROW_THORPE: '#3d434b', INIT: '#9aa1a8', CmN: '#c3a15a' };
-    const f = frame(box, 'Barriers of the main reaction classes under pressure', 'Barrier of each reaction class in the 288-atom crystal, in eV, from the fine-tuned UMA potential at validated saddles. Hover a point for the reaction enthalpy.');
-    for (const s of data) legendItem(f.legend, COL[s.id], s.label);
-    responsive(f.plot, W => {
-      const narrow = W < 640;
-      const H = 360, m = { l: 54, r: narrow ? 16 : 210, t: 14, b: 44 };
-      const x = lin(0, 40, m.l, W - m.r), y = lin(0, 3.8, H - m.b, m.t);
-      const svg = sv('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'Barrier against pressure' }, f.plot);
-      const grid = sv('g', { class: 'grid' }, svg);
-      for (const t of [0, 1, 2, 3]) {
-        sv('line', { x1: m.l, x2: W - m.r, y1: y(t), y2: y(t) }, grid);
-        label(sv('g', { class: 'tick' }, svg), m.l - 10, y(t) + 4, `${t}`, '', { 'text-anchor': 'end' });
-      }
-      for (const t of [0, 10, 20, 30, 40]) label(sv('g', { class: 'tick' }, svg), x(t), H - m.b + 18, `${t}`, '', { 'text-anchor': 'middle' });
-      sv('line', { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), class: 'axis-line' }, svg);
-      label(svg, (m.l + W - m.r) / 2, H - 6, 'Pressure (GPa)', 'axis-title', { 'text-anchor': 'middle' });
-      label(svg, 16, (m.t + H - m.b) / 2, 'Barrier (eV)', 'axis-title', { transform: `rotate(-90 16 ${(m.t + H - m.b) / 2})`, 'text-anchor': 'middle' });
-      // the gap the paper is about
-      const g = data.find(s => s.id === 'GROW'), t = data.find(s => s.id === 'GROW_THORPE');
-      if (g && t) {
-        const band = [...t.points].reverse().map(p => `${x(p.P)},${y(p.Ea)}`).concat(g.points.map(p => `${x(p.P)},${y(p.Ea)}`));
-        sv('polygon', { points: band.join(' '), fill: accent, opacity: 0.06 }, svg);
-      }
-      for (const s of data) {
-        const c = COL[s.id];
-        const d = s.points.map((p, i) => `${i ? 'L' : 'M'} ${x(p.P)} ${y(p.Ea)}`).join(' ');
-        sv('path', { d, fill: 'none', stroke: c, 'stroke-width': s.id === 'GROW' ? 2.6 : 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
-        for (const p of s.points) {
-          const dot = sv('circle', { cx: x(p.P), cy: y(p.Ea), r: 5, fill: p.upper ? '#fff' : c, stroke: p.upper ? c : '#fff', 'stroke-width': 2 }, svg);
-          const hit = sv('circle', { class: 'hit', cx: x(p.P), cy: y(p.Ea), r: 13 }, svg);
-          hover(box, f.tip, hit, () => [
-            { key: `${s.label} · ${p.P} GPa` },
-            { value: `${p.Ea.toFixed(2)} eV${p.upper ? ' (upper bound)' : ''}` },
-            { row: `reaction enthalpy ${p.dH > 0 ? '+' : ''}${minus(p.dH.toFixed(2))} eV`, color: c },
-          ], () => dot.setAttribute('r', 6.5), () => dot.setAttribute('r', 5));
-        }
-        if (!narrow && s.id !== 'INIT') {  // INIT ends 0.02 eV from GROW_THORPE: its value stays in the tooltip
-          const last = s.points[s.points.length - 1];
-          label(svg, x(last.P) + 12, y(last.Ea) + 4, `${last.Ea.toFixed(2)} eV`, 'lbl');
-        }
-      }
-      if (g && t && !narrow) {
-        const mid = (y(g.points[1].Ea) + y(t.points[1].Ea)) / 2;
-        label(svg, x(20), mid, '2.4–2.6 eV lower at every pressure', 'lbl-muted', { 'text-anchor': 'middle' });
-      }
-    });
-  }
-
   /* ---------------- high pressure: the connected path at 35 GPa, every point clickable ---------------- */
   function hpPath(box) {
     const data = DATA().highpressure && DATA().highpressure.path;
@@ -1531,7 +1478,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-tabs]').forEach(tabs);
     document.querySelectorAll('[data-metal-map]').forEach(metalMap);
-    const charts = { 'metal-overview': metalOverview, isotopes: isotopeChart, 'bench-barriers': benchBarriers, 'bench-speed': benchSpeed, alcohols: alcoholChart, 'hp-barriers': hpChart, 'hp-path': hpPath };
+    const charts = { 'metal-overview': metalOverview, isotopes: isotopeChart, 'bench-barriers': benchBarriers, 'bench-speed': benchSpeed, alcohols: alcoholChart, 'hp-path': hpPath };
     const mols = { hero: heroMol, product: productMol, reactions: reactionMol, 'alcohol-ts': alcoholMol };
     document.querySelectorAll('[data-mol]').forEach(b => {
       if (!mols[b.dataset.mol]) return;
